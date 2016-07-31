@@ -159,3 +159,14 @@ insertAt e xs pos = firstHalf ++ e:secondHalf
     firstHalf = take adjustedPos xs
     secondHalf = drop adjustedPos xs
     adjustedPos = pos - 1
+
+--problem 22
+range :: Int -> Int -> [Int]
+range x y = [x..y]
+--or
+range' :: Int -> Int -> [Int]
+range' x y = rangeHelper x y []
+  where
+    rangeHelper x y xs
+      | x > y = xs 
+      | x <= y = rangeHelper (x+1) y (xs ++ [x])
