@@ -151,3 +151,11 @@ removeAt :: Int -> [a] -> (a, [a])
 removeAt n xs = (xs !! (n-1), map snd $ allBut n xs)
   where 
     allBut n xs = filter (\(i,x) -> i /= n) (indexMap xs)
+
+--problem 21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt e xs pos = firstHalf ++ e:secondHalf
+  where 
+    firstHalf = take adjustedPos xs
+    secondHalf = drop adjustedPos xs
+    adjustedPos = pos - 1
