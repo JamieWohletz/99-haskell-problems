@@ -138,4 +138,16 @@ slice l begin end = foldl foldHelper [] (indexMap l)
       | i >= begin && i <= end = xs ++ [x]
       | otherwise = xs
 
-    
+--problem 19
+rotate :: [a] -> Int -> [a]
+rotate [] _ = []
+rotate xs 0 = xs
+rotate l@(x:xs) n 
+  | n > 0 = rotate (xs ++ [x]) (n - 1)
+  | n < 0 = rotate (last l:init l) (n + 1)
+
+--problem 20
+removeAt :: Int -> [a] -> (a, [a])
+removeAt n xs = (xs !! (n-1), map snd $ allBut n xs)
+  where 
+    allBut n xs = filter (\(i,x) -> i /= n) (indexMap xs)
